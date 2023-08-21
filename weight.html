@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weight Converter</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Weight Converter</h1>
+    <label for="inputValue">Value:</label>
+    <input type="number" id="inputValue" placeholder="Enter value" />
+
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit">
+      <option value="grams">Grams</option>
+      <option value="ounces">Ounces</option>
+      <option value="kilograms">Kilograms</option>
+      <option value="pounds">Pounds</option>
+      <!-- Add more units here -->
+    </select>
+
+    <label for="toUnit">To:</label>
+    <select id="toUnit">
+      <option value="grams">Grams</option>
+      <option value="ounces">Ounces</option>
+      <option value="kilograms">Kilograms</option>
+      <option value="pounds">Pounds</option>
+      <!-- Add more units here -->
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function convert() {
+      const inputValue = parseFloat(document.getElementById('inputValue').value);
+      const fromUnit = document.getElementById('fromUnit').value;
+      const toUnit = document.getElementById('toUnit').value;
+
+      let resultValue;
+
+      // Add more conversion cases here
+      if (fromUnit === 'grams' && toUnit === 'ounces') {
+        resultValue = inputValue * 0.03527396;
+      } else if (fromUnit === 'ounces' && toUnit === 'grams') {
+        resultValue = inputValue / 0.03527396;
+      } else if (fromUnit === 'grams' && toUnit === 'kilograms') {
+        resultValue = inputValue / 1000;
+      } else if (fromUnit === 'kilograms' && toUnit === 'grams') {
+        resultValue = inputValue * 1000;
+      } else if (fromUnit === 'ounces' && toUnit === 'kilograms') {
+        resultValue = inputValue * 0.02834952;
+      } else if (fromUnit === 'kilograms' && toUnit === 'ounces') {
+        resultValue = inputValue / 0.02834952;
+      } else if (fromUnit === 'grams' && toUnit === 'pounds') {
+        resultValue = inputValue * 0.002204623;
+      } else if (fromUnit === 'pounds' && toUnit === 'grams') {
+        resultValue = inputValue / 0.002204623;
+      } else if (fromUnit === 'kilograms' && toUnit === 'pounds') {
+        resultValue = inputValue * 2.204623;
+      } else if (fromUnit === 'pounds' && toUnit === 'kilograms') {
+        resultValue = inputValue / 2.204623;
+      } else {
+        resultValue = inputValue; // Default case
+      }
+
+      document.getElementById('result').textContent = `${inputValue} ${fromUnit} is ${resultValue.toFixed(2)} ${toUnit}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Converter</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Time Converter</h1>
+    <label for="inputValue">Value:</label>
+    <input type="number" id="inputValue" placeholder="Enter value" />
+
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit">
+      <option value="seconds">Seconds</option>
+      <option value="minutes">Minutes</option>
+      <option value="hours">Hours</option>
+      <option value="days">Days</option>
+      <option value="weeks">Weeks</option>
+      <!-- Add more units here -->
+    </select>
+
+    <label for="toUnit">To:</label>
+    <select id="toUnit">
+      <option value="seconds">Seconds</option>
+      <option value="minutes">Minutes</option>
+      <option value="hours">Hours</option>
+      <option value="days">Days</option>
+      <option value="weeks">Weeks</option>
+      <!-- Add more units here -->
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function convert() {
+      const inputValue = parseFloat(document.getElementById('inputValue').value);
+      const fromUnit = document.getElementById('fromUnit').value;
+      const toUnit = document.getElementById('toUnit').value;
+
+      let resultValue;
+
+      // Add more conversion cases here
+      if (fromUnit === 'seconds' && toUnit === 'minutes') {
+        resultValue = inputValue / 60;
+      } else if (fromUnit === 'minutes' && toUnit === 'seconds') {
+        resultValue = inputValue * 60;
+      } else if (fromUnit === 'minutes' && toUnit === 'hours') {
+        resultValue = inputValue / 60;
+      } else if (fromUnit === 'hours' && toUnit === 'minutes') {
+        resultValue = inputValue * 60;
+      } else if (fromUnit === 'hours' && toUnit === 'days') {
+        resultValue = inputValue / 24;
+      } else if (fromUnit === 'days' && toUnit === 'hours') {
+        resultValue = inputValue * 24;
+      } else if (fromUnit === 'days' && toUnit === 'weeks') {
+        resultValue = inputValue / 7;
+      } else if (fromUnit === 'weeks' && toUnit === 'days') {
+        resultValue = inputValue * 7;
+      } else {
+        resultValue = inputValue; // Default case
+      }
+
+      document.getElementById('result').textContent = `${inputValue} ${fromUnit} is ${resultValue.toFixed(2)} ${toUnit}`;
+    }
+  </script>
+</body>
+</html>

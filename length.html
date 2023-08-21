@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Converter</title>
+<link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+    <h1>Length Converter</h1>
+    <label for="inputValue">Value:</label>
+    <input type="number" id="inputValue" placeholder="Enter value" />
+
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit">
+      <option value="cm">Centimeters</option>
+      <option value="inch">Inches</option>
+      <option value="Metres">Metres</option>
+      <option value="km">Kilometres</option>
+      <option value="Millimetres">Millimetres</option>
+      <option value="Micrometres">Micrometres</option>
+      <option value="Nanometres">Nanometres</option>
+      <option value="Mile">Mile</option>
+      <option value="Yard">Yard</option>
+      <option value="Foot">Foot</option>
+      <!-- Add more units here -->
+    </select>
+
+    <label for="toUnit">To:</label>
+    <select id="toUnit">
+      <option value="cm">Centimeters</option>
+      <option value="inch">Inches</option>
+      <option value="Metres">Metres</option>
+      <option value="Millimetres">Millimetres</option>
+      <option value="Micrometres">Micrometres</option>
+      <option value="Nanometres">Nanometres</option>
+      <option value="Mile">Mile</option>
+      <option value="km">Kilometres</option>
+      <option value="yard">Yard</option>
+      <option value="Foot">Foot</option>
+      <!-- Add more units here -->
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function convert() {
+      const inputValue = parseFloat(document.getElementById('inputValue').value);
+      const fromUnit = document.getElementById('fromUnit').value;
+      const toUnit = document.getElementById('toUnit').value;
+
+      // Perform the conversion here and update the result paragraph
+      let resultValue;
+
+      if (fromUnit === 'cm' && toUnit === 'Metres') {
+        resultValue = inputValue / 100;
+      } else if (fromUnit === 'Metres' && toUnit === 'cm') {
+        resultValue = inputValue * 100;}
+      else if (fromUnit === 'cm' && toUnit === 'inch') {
+        resultValue = inputValue / 2.54;
+      } else if (fromUnit === 'inch' && toUnit === 'cm') {
+        resultValue = inputValue * 2.54;
+      }
+      else if (fromUnit === 'Millimetres' && toUnit === 'cm') {
+        resultValue = inputValue / 10;}
+        else if (fromUnit === 'cm' && toUnit === 'Millimetres') {
+        resultValue = inputValue * 10;}
+        else if (fromUnit === 'Nanometres' && toUnit === 'cm') {
+        resultValue = inputValue / 1000000 ;}
+        else if (fromUnit === 'cm' && toUnit === 'Nanometres') {
+        resultValue = inputValue * 1000000 ;}
+        else if (fromUnit === 'inch' && toUnit === 'Metres') {
+      resultValue = inputValue * 0.0254;
+    } else if (fromUnit === 'Metres' && toUnit === 'inch') {
+      resultValue = inputValue / 0.0254;
+    } else if (fromUnit === 'cm' && toUnit === 'Foot') {
+      resultValue = inputValue / 30.48;
+    } else if (fromUnit === 'Foot' && toUnit === 'cm') {
+      resultValue = inputValue * 30.48;
+    }
+    else if (fromUnit === 'Metres' && toUnit === 'Foot') {
+      resultValue = inputValue * 3.281;
+    } else if (fromUnit === 'Foot' && toUnit === 'Metres') {
+      resultValue = inputValue / 3.281;
+    } else if (fromUnit === 'km' && toUnit === 'Mile') {
+      resultValue = inputValue * 0.621371;
+    } else if (fromUnit === 'Mile' && toUnit === 'km') {
+      resultValue = inputValue / 0.621371;
+    }
+    else if (fromUnit === 'yard' && toUnit === 'Metres') {
+      resultValue = inputValue * 0.9144;
+    } else if (fromUnit === 'Metres' && toUnit === 'yard') {
+      resultValue = inputValue / 0.9144;}
+       else {
+        resultValue = inputValue; // Default case
+      }
+      document.getElementById('result').textContent = `${inputValue} ${fromUnit} is ${resultValue.toFixed(2)} ${toUnit}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Age Calculator</h1>
+    <label for="birthDate">Birth Date:</label>
+    <input type="date" id="birthDate" />
+
+    <label for="resultUnit">Result in:</label>
+    <select id="resultUnit">
+      <option value="years">Years</option>
+      <option value="months">Months</option>
+      <option value="days">Days</option>
+    </select>
+
+    <button onclick="calculateAge()">Calculate</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculateAge() {
+      const birthDate = new Date(document.getElementById('birthDate').value);
+      const resultUnit = document.getElementById('resultUnit').value;
+
+      const currentDate = new Date();
+      const timeDiff = currentDate - birthDate;
+
+      let resultValue;
+
+      if (resultUnit === 'years') {
+        resultValue = timeDiff / (365.25 * 24 * 60 * 60 * 1000);
+      } else if (resultUnit === 'months') {
+        resultValue = timeDiff / (30.44 * 24 * 60 * 60 * 1000);
+      } else if (resultUnit === 'days') {
+        resultValue = timeDiff / (24 * 60 * 60 * 1000);
+      }
+
+      document.getElementById('result').textContent = `Approximate age: ${resultValue.toFixed(2)} ${resultUnit}`;
+    }
+  </script>
+</body>
+</html>

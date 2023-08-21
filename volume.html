@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volume Converter</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Volume Converter</h1>
+    <label for="inputValue">Value:</label>
+    <input type="number" id="inputValue" placeholder="Enter value" />
+
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit">
+      <option value="cc">Cubic Centimeters</option>
+      <option value="ci">Cubic Inches</option>
+      <option value="liters">Liters</option>
+      <option value="gallons">Gallons</option>
+      <!-- Add more units here -->
+    </select>
+
+    <label for="toUnit">To:</label>
+    <select id="toUnit">
+      <option value="cc">Cubic Centimeters</option>
+      <option value="ci">Cubic Inches</option>
+      <option value="liters">Liters</option>
+      <option value="gallons">Gallons</option>
+      <!-- Add more units here -->
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function convert() {
+      const inputValue = parseFloat(document.getElementById('inputValue').value);
+      const fromUnit = document.getElementById('fromUnit').value;
+      const toUnit = document.getElementById('toUnit').value;
+
+      let resultValue;
+
+      // Add more conversion cases here
+      if (fromUnit === 'cc' && toUnit === 'ci') {
+        resultValue = inputValue * 0.0610237;
+      } else if (fromUnit === 'ci' && toUnit === 'cc') {
+        resultValue = inputValue / 0.0610237;
+      } else if (fromUnit === 'cc' && toUnit === 'liters') {
+        resultValue = inputValue / 1000;
+      } else if (fromUnit === 'liters' && toUnit === 'cc') {
+        resultValue = inputValue * 1000;
+      } else if (fromUnit === 'ci' && toUnit === 'liters') {
+        resultValue = inputValue * 0.0163871;
+      } else if (fromUnit === 'liters' && toUnit === 'ci') {
+        resultValue = inputValue / 0.0163871;
+      } else if (fromUnit === 'cc' && toUnit === 'gallons') {
+        resultValue = inputValue * 0.000264172;
+      } else if (fromUnit === 'gallons' && toUnit === 'cc') {
+        resultValue = inputValue / 0.000264172;
+      } else if (fromUnit === 'liters' && toUnit === 'gallons') {
+        resultValue = inputValue * 0.264172;
+      } else if (fromUnit === 'gallons' && toUnit === 'liters') {
+        resultValue = inputValue / 0.264172;
+      } else {
+        resultValue = inputValue; // Default case
+      }
+
+      document.getElementById('result').textContent = `${inputValue} ${fromUnit} is ${resultValue.toFixed(2)} ${toUnit}`;
+    }
+  </script>
+</body>
+</html>

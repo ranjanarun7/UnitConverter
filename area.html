@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Area Converter</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Area Converter</h1>
+    <label for="inputValue">Value:</label>
+    <input type="number" id="inputValue" placeholder="Enter value" />
+
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit">
+      <option value="sqcm">Square Centimeters</option>
+      <option value="sqinch">Square Inches</option>
+      <option value="sqm">Square Meters</option>
+      <option value="sqft">Square Feet</option>
+      <option value="sqkm">Square Kilometers</option>
+      <option value="sqmi">Square Miles</option>
+      <!-- Add more units here -->
+    </select>
+
+    <label for="toUnit">To:</label>
+    <select id="toUnit">
+      <option value="sqcm">Square Centimeters</option>
+      <option value="sqinch">Square Inches</option>
+      <option value="sqm">Square Meters</option>
+      <option value="sqft">Square Feet</option>
+      <option value="sqkm">Square Kilometers</option>
+      <option value="sqmi">Square Miles</option>
+      <!-- Add more units here -->
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function convert() {
+      const inputValue = parseFloat(document.getElementById('inputValue').value);
+      const fromUnit = document.getElementById('fromUnit').value;
+      const toUnit = document.getElementById('toUnit').value;
+
+      let resultValue;
+
+      // Add more conversion cases here
+      if (fromUnit === 'sqcm' && toUnit === 'sqinch') {
+        resultValue = inputValue / 6.4516;
+      } else if (fromUnit === 'sqinch' && toUnit === 'sqcm') {
+        resultValue = inputValue * 6.4516;
+      } else if (fromUnit === 'sqcm' && toUnit === 'sqm') {
+        resultValue = inputValue / 10000;
+      } else if (fromUnit === 'sqm' && toUnit === 'sqcm') {
+        resultValue = inputValue * 10000;
+      } else if (fromUnit === 'sqinch' && toUnit === 'sqm') {
+        resultValue = inputValue * 0.00064516;
+      } else if (fromUnit === 'sqm' && toUnit === 'sqinch') {
+        resultValue = inputValue / 0.00064516;
+      } else if (fromUnit === 'sqcm' && toUnit === 'sqft') {
+        resultValue = inputValue / 929.0304;
+      } else if (fromUnit === 'sqft' && toUnit === 'sqcm') {
+        resultValue = inputValue * 929.0304;
+      } else if (fromUnit === 'sqm' && toUnit === 'sqft') {
+        resultValue = inputValue * 10.7639;
+      } else if (fromUnit === 'sqft' && toUnit === 'sqm') {
+        resultValue = inputValue / 10.7639;
+      } else if (fromUnit === 'sqkm' && toUnit === 'sqmi') {
+        resultValue = inputValue * 0.386102;
+      } else if (fromUnit === 'sqmi' && toUnit === 'sqkm') {
+        resultValue = inputValue / 0.386102;
+      } else {
+        resultValue = inputValue; // Default case
+      }
+
+      document.getElementById('result').textContent = `${inputValue} ${fromUnit} is ${resultValue.toFixed(2)} ${toUnit}`;
+    }
+  </script>
+</body>
+</html>
